@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #lottery-container {
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        #result-container {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+    <title>Random Lottery Draw</title>
+</head>
+<body>
+
+<div id="lottery-container">
+    <h1>隨機抽籤</h1>
+    <button onclick="抽籤()">抽籤</button>
+    <div id="result-container"></div>
+
+    <script>
+        let remainingNumbers = Array.from({ length: 30 }, (_, index) => index + 1);
+
+        function 抽籤() {
+            const resultContainer = document.getElementById("result-container");
+
+            if (remainingNumbers.length === 0) {
+                resultContainer.innerHTML = "已抽完所有號碼！";
+                return;
+            }
+
+            const randomIndex = Math.floor(Math.random() * remainingNumbers.length);
+            const selectedNumber = remainingNumbers.splice(randomIndex, 1)[0];
+
+            resultContainer.innerHTML = `抽到的號碼是：${selectedNumber}`;
+        }
+    </script>
+</div>
+
+</body>
+</html>
+
